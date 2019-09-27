@@ -81,3 +81,15 @@ func (c *MongoClient) UpdateData(filter bson.D, update bson.D) error {
 
 	return nil
 }
+
+func (c *MongoClient) DeleteData(filter bson.D) error {
+	options := options.Delete()
+
+	_, err := c.Collection.DeleteOne(context.TODO(), filter, options)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
